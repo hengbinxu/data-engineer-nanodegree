@@ -1,3 +1,9 @@
 .ipynb_checkpoints/
 __pycache__/
 .vscode/
+.workspace-config.json
+aws_secret_keys/
+data_warehouse/AWS_IaC_example
+data_warehouse/course_examples/Data
+data_warehouse/course_project/log_data
+data_warehouse/course_project/download_file_from_s3.sh
