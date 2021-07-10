@@ -6,6 +6,10 @@ from sql_queries import copy_table_queries, insert_table_queries
 
 @timer
 def load_staging_tables(cur, conn):
+    """
+    Execute AWS copy command to load data 
+    from S3 to redshift staging area.
+    """
     for query in copy_table_queries:
         try:
             cur.execute(query)
@@ -17,6 +21,9 @@ def load_staging_tables(cur, conn):
             raise e
 @timer
 def insert_tables(cur, conn):
+    """
+    Execute ETL process from staging area to star schema.
+    """
     for query in insert_table_queries:
         try:
             cur.execute(query)

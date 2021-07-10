@@ -6,6 +6,9 @@ from sql_queries import create_table_queries, drop_table_queries
 
 @timer
 def drop_tables(cur, conn):
+    """
+    Execute all drop table queries.
+    """
     for query in drop_table_queries:
         try:
             cur.execute(query)
@@ -18,6 +21,9 @@ def drop_tables(cur, conn):
 
 @timer
 def create_tables(cur, conn):
+    """
+    Execute all create table queries.
+    """
     for query in create_table_queries:
         try:
             cur.execute(query)
