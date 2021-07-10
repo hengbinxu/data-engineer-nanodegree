@@ -19,86 +19,82 @@ time_table_drop = drop_table_stmt_template.format(table_name='time')
 # CREATE STAGING TABLES
 staging_events_table_create= ("""
     create table if not exists staging_events (
-        artist varchar(128),
-        auth varchar(32),
-        firstName varchar(128),
+        artist varchar,
+        auth varchar,
+        firstName varchar,
         gender char(1),
         itemInSession int,
-        lastName varchar(64),
-        length numeric(20, 5),
-        level varchar(16),
-        location varchar(256),
-        method varchar(16),
-        page varchar(32),
-        registration numeric(15, 1),
-        sessionId bigint sortkey distkey,
-        song varchar(256),
+        lastName varchar,
+        length numeric,
+        level varchar,
+        location varchar,
+        method varchar,
+        page varchar,
+        registration numeric,
+        sessionId varchar,
+        song varchar,
         status smallint,
         ts timestamp,
-        userAgent varchar(512),
+        userAgent varchar,
         userId integer
     );
 """)
 
 staging_songs_table_create = ("""
     create table if not exists staging_songs (
-        song_id varchar(18),
-        title varchar(256),
-        year smallint,
+        song_id varchar,
+        title varchar,
+        year int4,
         num_songs smallint,
-        artist_id varchar(18),
-        artist_name varchar(512),
-        artist_location varchar(512),
-        artist_latitude decimal(10, 5),
-        artist_longitude decimal(10, 5),
-        duration numeric(20, 5)
+        artist_id varchar,
+        artist_name varchar,
+        artist_location varchar,
+        artist_latitude numeric,
+        artist_longitude numeric,
+        duration numeric
     );
 """)
 
 # Dimension Tables
 user_table_create = ("""
     create table if not exists users (
-        user_id integer sortkey,
+        user_id integer primary key sortkey,
         first_name varchar(64),
         last_name varchar(64),
         gender char(1),
-        level varchar(16),
-        primary key(user_id)
+        level varchar(16)
     );
 """)
 
 song_table_create = ("""
     create table if not exists songs (
-        song_id varchar(18) sortkey,
+        song_id varchar(18) primary key sortkey,
         title varchar(256),
         artist_id varchar(18),
         year smallint,
-        duration numeric(20, 5),
-        primary key(song_id)
+        duration numeric(20, 5)
     ) diststyle all;
 """)
 
 artist_table_create = ("""
     create table if not exists artists (
-        artist_id varchar(18) sortkey,
+        artist_id varchar(18) primary key sortkey,
         name varchar(512),
         location varchar(512),
-        latitude decimal(10, 5),
-        longitude decimal(10, 5),
-        primary key(artist_id)
+        latitude numeric(10, 5),
+        longitude numeric(10, 5)
     ) diststyle all;
 """)
 
 time_table_create = ("""
     create table if not exists time (
-        start_time timestamp sortkey,
+        start_time timestamp primary key sortkey,
         hour smallint not null,
         day smallint not null,
         week smallint not null,
         month smallint not null,
         year smallint not null,
-        weekday smallint not null,
-        primary key(start_time)
+        weekday smallint not null
     ) diststyle all;
 """)
 
@@ -126,7 +122,6 @@ staging_events_copy = (
     format as json {log_json_path}
     region '{region_name}'
     timeformat 'epochmillisecs'
-    TRUNCATECOLUMNS BLANKSASNULL EMPTYASNULL
     ;
     """
 ).format(
@@ -146,7 +141,6 @@ staging_songs_copy = (
     credentials 'aws_iam_role={role_arn}'
     region '{region_name}'
     format as json 'auto'
-    TRUNCATECOLUMNS BLANKSASNULL EMPTYASNULL
     ;
     """
 ).format(
@@ -164,7 +158,7 @@ songplay_table_insert = ("""
         se.level as level,
         ss.song_id as song_id,
         ss.artist_id as artist_id,
-        se.sessionId as session_id,
+        cast(se.sessionId as integer) as session_id,
         se.location as location,
         se.userAgent as user_agent
     from staging_events se
@@ -217,7 +211,7 @@ time_table_insert = ("""
 
 create_table_queries = [staging_events_table_create, staging_songs_table_create, user_table_create, song_table_create, artist_table_create, time_table_create, songplay_table_create]
 drop_table_queries = [staging_events_table_drop, staging_songs_table_drop, songplay_table_drop, user_table_drop, song_table_drop, artist_table_drop, time_table_drop]
-copy_table_queries = [staging_events_copy, staging_songs_copy]
+copy_table_queries = [staging_songs_copy] # staging_events_copy, 
 insert_table_queries = [user_table_insert, song_table_insert, artist_table_insert, time_table_insert, songplay_table_insert]
 
 ############

@@ -10,7 +10,7 @@ def load_staging_tables(cur, conn):
         try:
             cur.execute(query)
             conn.commit()
-            print('Successfully exexute query: {}'.format(query))
+            print('Successfully exexute the query: {}'.format(query))
         except Exception as e:
             print('Occurs error while executing the query: {}'.format(query))
             conn.rollback()
@@ -21,7 +21,7 @@ def insert_tables(cur, conn):
         try:
             cur.execute(query)
             conn.commit()
-            print('Successfully exexute query: {}'.format(query))
+            print('Successfully exexute the query: {}'.format(query))
         except Exception as e:
             print('Occurs error while executing the query: {}'.format(query))
             conn.rollback()
