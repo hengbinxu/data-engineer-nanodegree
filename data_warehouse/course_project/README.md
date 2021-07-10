@@ -51,39 +51,39 @@ There are 7 tables in total, two of them are for saving staging data which are f
 
 - Staging_events
 
-| column_name   | data_type      |
-| ------------- | -------------- |
-| artist        | varchar(128)   |
-| auth          | varchar(32)    |
-| firstName     | varchar(128)   |
-| gender        | char(1)        |
-| itemInSession | int            |
-| lastName      | varchar(64)    |
-| length        | numeric(20, 5) |
-| location      | varchar(256)   |
-| method        | varchar(16)    |
-| page          | varchar(32)    |
-| registration  | numeric(15, 1) |
-| sessionId     | bigint         |
-| song          | varchar(256)   |
-| status        | smallint       |
-| ts            | timestamp      |
-| userAgent     | varchar(512)   |
-| userId        | integer        |
+| column_name   | data_type |
+| ------------- | --------- |
+| artist        | varchar   |
+| auth          | varchar   |
+| firstName     | varchar   |
+| gender        | char(1)   |
+| itemInSession | int       |
+| lastName      | varchar   |
+| length        | numeric   |
+| location      | varchar   |
+| method        | varchar   |
+| page          | varchar   |
+| registration  | numeric   |
+| sessionId     | varchar   |
+| song          | varchar   |
+| status        | smallint  |
+| ts            | timestamp |
+| userAgent     | varchar   |
+| userId        | integer   |
 
 - staging_songs
 
 | column_name      | data_type      |
 | ---------------- | -------------- |
-| song_id          | varchar(18)    |
-| title            | varchar(256)   |
-| year             | samllint       |
+| song_id          | varchar        |
+| title            | varchar        |
+| year             | int4           |
 | num_songs        | smallint       |
-| artist_id        | varchar(18)    |
-| artist_name      | varchar(512)   |
-| artist_location  | varchar(512)   |
-| artist_latitude  | decimal(10, 5) |
-| artist_longitude | decimal(10, 5) |
+| artist_id        | varchar        |
+| artist_name      | varchar        |
+| artist_location  | varchar        |
+| artist_latitude  | numeric        |
+| artist_longitude | numeric        |
 | duration         | numeric(20, 5) |
 
 ### Analyctial Tables
@@ -109,8 +109,8 @@ There are 7 tables in total, two of them are for saving staging data which are f
 | artist_id   | varchar(18), primary key, sortkey |
 | name        | varchar(512)                      |
 | location    | varchar(512)                      |
-| latitude    | decimal(10, 5)                    |
-| longitude   | decimal(10, 5)                    |
+| latitude    | numeric(10, 5)                    |
+| longitude   | numeric(10, 5)                    |
 
 - songs
 
@@ -172,9 +172,49 @@ Before executing the project, you need to create a Redshift cluster and set its 
   python3 etl.py
   ```
 
+- It can run the below SQL query to verify whether all queries have successfully executed.
+
+  ```sql
+  select 'staging_event' as table_name,
+  	count(artist) as row_count
+  from staging_events se
+  union all (
+  	select 'staging_songs' as table_name,
+          count(song_id) as row_count
+      from staging_songs
+  ) 
+  union all (
+  	select 'song_play' as table_name,
+          count(song_play_id) as row_count
+      from song_play
+  )
+  union all (
+  	select 'songs' as table_name,
+          count(song_id) as row_count
+      from songs
+  )
+  union all (
+  	select 'artists' as table_name,
+          count(artist_id) as row_count
+      from artists
+  )
+  union all (
+  	select 'users' as table_name,
+          count(user_id) as row_count
+      from users
+  ) 
+  union all (
+  	select 'song_play' as table_name,
+          count(start_time) as row_count
+      from time
+  ) order by row_count desc;
+  ```
+
+  
+
 ## Example queries
 
-- Find the top 10 popular song title and its artist name in  2018.
+- Find the top 10 popular song, its title and its artist_name in  2018.
 
   ```sql
   select distinct tt.count_song as count_num, 
