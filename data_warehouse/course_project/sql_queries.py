@@ -25,7 +25,7 @@ staging_events_table_create= ("""
         gender char(1),
         itemInSession int,
         lastName varchar,
-        length numeric,
+        length numeric(20, 5),
         level varchar,
         location varchar,
         method varchar,
@@ -49,9 +49,9 @@ staging_songs_table_create = ("""
         artist_id varchar,
         artist_name varchar,
         artist_location varchar,
-        artist_latitude numeric,
-        artist_longitude numeric,
-        duration numeric
+        artist_latitude numeric(10, 5),
+        artist_longitude numeric(10, 5),
+        duration numeric(20, 5)
     );
 """)
 

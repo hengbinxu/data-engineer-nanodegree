@@ -51,25 +51,25 @@ There are 7 tables in total, two of them are for saving staging data which are f
 
 - Staging_events
 
-| column_name   | data_type |
-| ------------- | --------- |
-| artist        | varchar   |
-| auth          | varchar   |
-| firstName     | varchar   |
-| gender        | char(1)   |
-| itemInSession | int       |
-| lastName      | varchar   |
-| length        | numeric   |
-| location      | varchar   |
-| method        | varchar   |
-| page          | varchar   |
-| registration  | numeric   |
-| sessionId     | varchar   |
-| song          | varchar   |
-| status        | smallint  |
-| ts            | timestamp |
-| userAgent     | varchar   |
-| userId        | integer   |
+| column_name   | data_type      |
+| ------------- | -------------- |
+| artist        | varchar        |
+| auth          | varchar        |
+| firstName     | varchar        |
+| gender        | char(1)        |
+| itemInSession | int            |
+| lastName      | varchar        |
+| length        | numeric(20, 5) |
+| location      | varchar        |
+| method        | varchar        |
+| page          | varchar        |
+| registration  | numeric        |
+| sessionId     | varchar        |
+| song          | varchar        |
+| status        | smallint       |
+| ts            | timestamp      |
+| userAgent     | varchar        |
+| userId        | integer        |
 
 - staging_songs
 
@@ -82,8 +82,8 @@ There are 7 tables in total, two of them are for saving staging data which are f
 | artist_id        | varchar        |
 | artist_name      | varchar        |
 | artist_location  | varchar        |
-| artist_latitude  | numeric        |
-| artist_longitude | numeric        |
+| artist_latitude  | numeric(10, 5) |
+| artist_longitude | numeric(10, 5) |
 | duration         | numeric(20, 5) |
 
 ### Analyctial Tables
