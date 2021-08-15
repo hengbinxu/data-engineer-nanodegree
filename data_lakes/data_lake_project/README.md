@@ -64,6 +64,7 @@ log_data/2018/11/2018-11-13-events.json
 <p align="center">
     <img src="img/udacity_data_lake_project.png" style="zoom:100%;" width="400"/>
 </p>
+
 ### Analytical Table
 
 | table name | property        | source           | usage                                                        | partition key   |
@@ -77,6 +78,7 @@ log_data/2018/11/2018-11-13-events.json
 <p align="center">
     <img src="img/analytical_schema.png" style="zoom:50%;"/>
 </p>
+
 ## Project Structure
 
 ----
