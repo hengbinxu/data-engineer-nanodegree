@@ -26,7 +26,7 @@
  - Learn how to use spark to process data. 
  - Know different types of system architucture of data lake.
 
- - Course Examples
+ - [Course Examples](https://github.com/hengbinxu/data-engineer-nanodegree/tree/master/data_lakes/data_lake_examples)
  - [data_lake_project](https://github.com/hengbinxu/data-engineer-nanodegree/tree/master/data_lakes/data_lake_project) 
 
 ### Data Pipelines with Airflow
