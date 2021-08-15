@@ -1,7 +1,6 @@
 # Project: Data Lake
 
 ----
-### Table of Content:
 
 [TOC]
 
