@@ -42,7 +42,6 @@ def process_song_data(spark: SparkSession, input_data: str, output_data: str):
     '''
     # get filepath to song data filed
     song_data = os.path.join(input_data, "song_data/*/*/*/*.json")
-    print(song_data)
 
     staging_song_schema = StructType([
         StructField('song_id', StringType(), True),
@@ -164,11 +163,20 @@ def process_log_data(spark: SparkSession, input_data: str, output_data: str):
     time_table.write.mode('overwrite').partitionBy('year', 'month').parquet(time_output_path)
     print('Finished export time_table to {}'.format(time_output_path))
 
+    # read in artists data to use for songplyas table
+    artists_table_path = os.path.join(output_data, 'artists/')
+    artists_table = spark.read.parquet(artists_table_path)
+    artists_table = artists_table.select(
+        'artist_id', 'name', col('location').alias('artist_location'),
+        'latitude', 'longitude'
+    )
+
     # read in song data to use for songplays table
     songs_table_path = os.path.join(output_data, 'songs/')
     songs_table = spark.read.parquet(songs_table_path)
     songs_table  = songs_table.select(
-        'song_id', 'title', 'duration', col('year').alias('song_year'), 'artist_id'
+        'song_id', 'title', col('artist_id').alias('song_artist_id'), 'duration',
+        col('year').alias('song_year')
     )
     # Use window function to generate songplay_id
     _window = Window.orderBy(col('start_time'))
@@ -180,6 +188,8 @@ def process_log_data(spark: SparkSession, input_data: str, output_data: str):
     ]
     song_plays_table = staging_log_df.join(
         songs_table, staging_log_df.song == songs_table.title
+    ).join(
+        artists_table, songs_table.song_artist_id == artists_table.artist_id
     ).withColumn('songplay_id', row_number().over(_window))\
     .selectExpr(song_plays_selectExpr).repartition('year', 'month')
 
