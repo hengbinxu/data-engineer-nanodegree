@@ -2,8 +2,13 @@
 __pycache__/
 .vscode/
 .workspace-config.json
+*.dbml
 aws_secret_keys/
 data_warehouse/AWS_IaC_example
 data_warehouse/course_examples/Data
 data_warehouse/course_project/log_data
 data_warehouse/course_project/download_file_from_s3.sh
+data_lakes/data_lake_project/output/
+data_lakes/data_lake_project/data/log_data
+data_lakes/data_lake_project/data/song_data
+data_lakes/data_lake_project/*.ipynb
