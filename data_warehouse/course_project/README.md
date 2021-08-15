@@ -119,7 +119,7 @@ There are 7 tables in total, two of them are for saving staging data which are f
 | song_id     | varchar(18), primary key, sortkey |
 | title       | varchar(256)                      |
 | artist_id   | varchar(18)                       |
-| year        | samllint                          |
+| year        | smallint                          |
 | duration    | numeric(20, 5)                    |
 
 - users
@@ -128,7 +128,7 @@ There are 7 tables in total, two of them are for saving staging data which are f
 | ----------- | ------------------------ |
 | user_id     | varchar(18), primary key |
 | first_name  | varchar(256)             |
-| last_name   | samllint                 |
+| last_name   | smallint                 |
 | gender      | char(1)                  |
 | level       | varcahr(16)              |
 
