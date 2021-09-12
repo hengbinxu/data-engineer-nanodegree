@@ -3,6 +3,7 @@ __pycache__/
 .vscode/
 .workspace-config.json
 *.dbml
+.pyenv
 aws_secret_keys/
 data_warehouse/AWS_IaC_example
 data_warehouse/course_examples/Data
@@ -12,3 +13,6 @@ data_lakes/data_lake_project/output/
 data_lakes/data_lake_project/data/log_data
 data_lakes/data_lake_project/data/song_data
 data_lakes/data_lake_project/*.ipynb
+data_pipeline/airflow_project/test-data
+data_pipeline/airflow_project/log_json_path.json
+data_pipeline/airflow_project/test.py
