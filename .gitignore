@@ -16,3 +16,4 @@ data_lakes/data_lake_project/*.ipynb
 data_pipeline/airflow_project/test-data
 data_pipeline/airflow_project/log_json_path.json
 data_pipeline/airflow_project/test.py
+data_pipeline/airflow_project/insert_data.py
