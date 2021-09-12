@@ -30,6 +30,8 @@
  - [data_lake_project](https://github.com/hengbinxu/data-engineer-nanodegree/tree/master/data_lakes/data_lake_project) 
 
 ### Data Pipelines with Airflow
+ - Know what is data pipeline and how to use Airflow to build robust data pipeline.
 
+ - [data_pipeline_project](https://github.com/hengbinxu/data-engineer-nanodegree/tree/master/data_pipeline/airflow_project)
 
 ### Capstone Project
