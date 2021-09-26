@@ -127,6 +127,10 @@ More detail data clearning and visualization result refer to [`capstone_project.
 
 - Check the status of the ETL process. In this project, we just check whether data successfully insert to each table. More detail can refer to [`data_check.py`](./data_check.py) 
 
+  ```bash
+  python data_check.py
+  ```
+
 ## Project Structure
 
  ```ASII
