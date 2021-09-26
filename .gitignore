@@ -17,3 +17,8 @@ data_pipeline/airflow_project/test-data
 data_pipeline/airflow_project/log_json_path.json
 data_pipeline/airflow_project/test.py
 data_pipeline/airflow_project/insert_data.py
+capstone_project/18-83510-I94-Data-2016/
+capstone_project/sas_data/
+capstone_project/templature_data/
+capstone_project/test.py
+capstone_project/test.ipynb
