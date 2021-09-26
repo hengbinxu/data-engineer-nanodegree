@@ -2,8 +2,6 @@
 
 ## Projects
 
------
-
 ### Data Modeling
 
 - Learn how to create relation and NoSQL data model to meet requirements of data consumer.
