@@ -5,7 +5,7 @@
 ### Data Modeling
 
 - Learn how to create relation and NoSQL data model to meet requirements of data consumer.
-- Learn what is `data modling`, `start schema` and `three normal form`.
+- Learn what is `data modeling`, `star schema`, and `three normal form`.
 
 - [Course Examples](./data_modeling/course_examples/)
 - Projects
